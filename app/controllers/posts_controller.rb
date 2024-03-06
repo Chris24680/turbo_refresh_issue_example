@@ -4,13 +4,17 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
+  def new
+    @post = Post.new
+  end
+
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
 
-    if @post.save
-      redirect_to posts_url
-    end
+    return unless @post.save
+
+    redirect_to posts_url
   end
 
   private
